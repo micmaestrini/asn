@@ -25,6 +25,7 @@ jobs:
           git add secs.txt
           git add notifications.out
           git commit -m "Update results"
+          git pull --rebase origin ${{ github.ref_name }}
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
