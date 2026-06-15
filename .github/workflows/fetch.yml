@@ -1,7 +1,6 @@
 name: Fetch
 
 on:
-  push:
   workflow_dispatch:
   schedule:
     - cron: "0 8,9,10,11,12,13,14,15,16,17,18,19,20 * * *"
@@ -17,7 +16,7 @@ jobs:
         run: OPENSSL_CONF=openssl.cnf python3 getasn.py
 
       - name: Commit README.md
-        run: |
+       run: |
           git config --local user.email "asn@example.com"
           git config --local user.name "ASN_TG"
           git add secs_ordered.txt
@@ -25,6 +24,7 @@ jobs:
           git add secs.txt
           git add notifications.out
           git commit -m "Update results"
+          git stash  # Stash any remaining changes
           git pull --rebase origin ${{ github.ref_name }}
       - name: Push changes
         uses: ad-m/github-push-action@master
