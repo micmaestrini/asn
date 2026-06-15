@@ -16,7 +16,7 @@ jobs:
         run: OPENSSL_CONF=openssl.cnf python3 getasn.py
 
       - name: Commit README.md
-       run: |
+        run: |
           git config --local user.email "asn@example.com"
           git config --local user.name "ASN_TG"
           git add secs_ordered.txt
